@@ -3,25 +3,147 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <style>
+    #holder {
+      background-color: powderblue;
+      border-style: solid;
+      border-width: 5px;
+    }
+    #header {
+      background-color: #17AEEB;
+      text-align: center;
+      border-style: solid;
+      border-width: 5px 5px 15px 5px;
+    }
+    .tweet {
+      background-color: powderblue;
+    }
+    .userButton {
+      
+    }
+    #getAllInfo {
+      font-size: 20px;
+      padding: 12px 28px;
+      border-radius: 10px;
+      background-color: #E87C65;
+    }
+    #onlyNewInfo {
+      font-size: 20px;
+      padding: 12px 28px;
+      border-radius: 10px;
+      background-color: #E87C65;
+    }
+    </style>
   </head>
   <body>
+    <div>
+      <div id = "header">
+        <!-- <p id = "header">Current Tweets</p> -->
+        <h2>Current Tweets</h2>
+      </div>
+      <div id = "holder">
+      </div>
+    </div>
+    <br/>
+      <button id = "onlyNewInfo">Only Most Recent Tweets - Too Much, To Much!</button>
+    <br/>
+      <button id = "getAllInfo">Update My Tweets - Give Me All Of Them!</button>
     <script>
 
       $(document).ready(function(){
         var $body = $('body');
-        $body.html('');
-
+        // $body.html('');
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+          var tweetTime = streams.home[index].created_at;
+          var $tweet = $('<div class = "tweet"></div>');
+          var $tweetTime = $('<div class = "tweet"></div>');
+          // var $tweetButton = $('<button id = ' + tweet.user + '> </button> ');
 
+          // $('#' + tweet.user).on("click", function() {
+          //   console.log('clicked');
+          // });  
+
+          var $tweetButton = $('<button class = clickAction> </button> ');
+
+          $('.clickAction').on("click", function() {
+            console.log('clicked');
+          });  
+
+
+          var $rule = $('<hr>');
+
+          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweetButton.text('See All Messages From ' + tweet.user);
+          $tweetTime.text('Time : '+ tweetTime);
+          $tweet.appendTo("#holder");
+          $tweetTime.appendTo("#holder");
+          // $tweetButton.appendTo($tweet);
+          $tweetButton.appendTo("#holder");
+          $rule.appendTo("#holder");
+          index -= 1; 
+
+        }
       });
 
+
+
+      $("#getAllInfo").click(function() {
+        var $body = $('body');
+        // $body.html('');
+        $("#holder").empty();
+        var index = streams.home.length - 1;
+        while(index >= 0){
+          var tweet = streams.home[index];
+          var tweetTime = streams.home[index].created_at;
+          var $tweet = $('<div class = "tweet"></div>');
+          var $tweetTime = $('<div class = "tweet"></div>');
+          var $tweetButton = $('<button class = "userButton"> </button> ');
+          var $rule = $('<hr>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweetButton.text('See All Messages From ' + tweet.user);
+          $tweetTime.text('Time : '+ tweetTime);
+          $tweet.appendTo("#holder");
+          $tweetTime.appendTo("#holder");
+          $tweetButton.appendTo("#holder");
+          $rule.appendTo("#holder");
+          index -= 1;
+        }
+      })
+
+
+      $("#onlyNewInfo").click(function() {
+        
+        var $body = $('body');
+        // $body.html('');
+        $("#holder").empty();
+        var index = streams.home.length - 1;
+        while(index >= streams.home.length - 11){
+          var tweet = streams.home[index];
+          var tweetTime = streams.home[index].created_at;
+          var $tweet = $('<div class = "tweet"></div>');
+          var $tweetTime = $('<div class = "tweet"></div>');
+          var $tweetButton = $('<button class = "userButton"> </button> ');
+
+          var $rule = $('<hr>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweetButton.text('See All Messages From ' + tweet.user);
+          $tweetTime.text('Time : '+ tweetTime);
+          $tweet.appendTo("#holder");
+          $tweetTime.appendTo("#holder");
+          $tweetButton.appendTo("#holder");
+          $rule.appendTo("#holder");
+          index -= 1;
+        }
+      })
+
+//       $tweetButton.on("click", function() {
+//         console.log("clicked");
+// });
+
+      console.log('USERS = ', users);
+      console.log('STREAMS = ', streams);
     </script>
   </body>
 </html>
