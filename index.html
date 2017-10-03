@@ -33,12 +33,18 @@
       border-radius: 10px;
       background-color: #E87C65;
     }
+    #finito {
+      font-size: 20px;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 10px;
+      background-color: #800000;
+    }
     </style>
   </head>
   <body>
     <div>
       <div id = "header">
-        <!-- <p id = "header">Current Tweets</p> -->
         <h2>Current Tweets</h2>
       </div>
       <div id = "holder">
@@ -48,6 +54,8 @@
       <button id = "onlyNewInfo">Only Most Recent Tweets - Too Much, To Much!</button>
     <br/>
       <button id = "getAllInfo">Update My Tweets - Give Me All Of Them!</button>
+      <br/>
+      <button id = "finito">I Am Finished Tweeting. Seriously.</button>
     <script>
 
       $(document).ready(function(){
@@ -57,26 +65,61 @@
         while(index >= 0){
           var tweet = streams.home[index];
           var tweetTime = streams.home[index].created_at;
-          var $tweet = $('<div class = "tweet"></div>');
-          var $tweetTime = $('<div class = "tweet"></div>');
-          // var $tweetButton = $('<button id = ' + tweet.user + '> </button> ');
+          var $tweet = $('<div class = '+ tweet.user +'></div>');
+          var $tweetTime = $('<div class = '+ tweet.user +'></div>');
+          var tweetUser = streams.home[index].user;
+          
 
-          // $('#' + tweet.user).on("click", function() {
+          // var $tweetButton = $('<button id =' + tweet.user + index + '></button> ');
+          var $tweetButton = $('<button class =' + tweet.user + '></button>');
+          // $('#'+ tweet.user ).on("click", function() {
           //   console.log('clicked');
-          // });  
+          // });
 
-          var $tweetButton = $('<button class = clickAction> </button> ');
+          // var $tweetButton = $('<button class = useButton></button> ');
 
-          $('.clickAction').on("click", function() {
-            console.log('clicked');
-          });  
+          // $('.useButton').on("click", function() {
+          //   console.log($(this).tweetUser);
+          // });
+          var totalID = tweet.user + index;
+          console.log(totalID);
+
+          // $('#'+totalID).on("click", function() {
+          //   console.log($(this).text());
+          //   console.log('TEST');
+          // });
+
+          $('.shawndrost').on("click", function() {
+            $('.mracus').remove();
+            $('.sharksforcheap').remove();
+            $('.douglascalhoun').remove();
+          })
+
+          $('.mracus').on("click", function() {
+            $('.shawndrost').remove();
+            $('.sharksforcheap').remove();
+            $('.douglascalhoun').remove();
+          })
+
+          $('.sharksforcheap').on("click", function() {
+            $('.mracus').remove();
+            $('.shawndrost').remove();
+            $('.douglascalhoun').remove();
+          })
+
+          $('.douglascalhoun').on("click", function() {
+            $('.mracus').remove();
+            $('.shawndrost').remove();
+            $('.sharksforcheap').remove();
+          })
 
 
-          var $rule = $('<hr>');
+          var $rule = $('<hr class='+tweet.user+'>');
 
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
           $tweetButton.text('See All Messages From ' + tweet.user);
           $tweetTime.text('Time : '+ tweetTime);
+          $tweet.appendTo("#holder");
           $tweet.appendTo("#holder");
           $tweetTime.appendTo("#holder");
           // $tweetButton.appendTo($tweet);
@@ -97,10 +140,10 @@
         while(index >= 0){
           var tweet = streams.home[index];
           var tweetTime = streams.home[index].created_at;
-          var $tweet = $('<div class = "tweet"></div>');
-          var $tweetTime = $('<div class = "tweet"></div>');
-          var $tweetButton = $('<button class = "userButton"> </button> ');
-          var $rule = $('<hr>');
+          var $tweet = $('<div class = '+ tweet.user +'></div>');
+          var $tweetTime = $('<div class = '+ tweet.user +'></div>');
+          var $tweetButton = $('<button class =' + tweet.user + '></button>');
+          var $rule = $('<hr class='+tweet.user+'>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
           $tweetButton.text('See All Messages From ' + tweet.user);
           $tweetTime.text('Time : '+ tweetTime);
@@ -108,6 +151,29 @@
           $tweetTime.appendTo("#holder");
           $tweetButton.appendTo("#holder");
           $rule.appendTo("#holder");
+          $('.shawndrost').on("click", function() {
+            $('.mracus').remove();
+            $('.sharksforcheap').remove();
+            $('.douglascalhoun').remove();
+          })
+
+          $('.mracus').on("click", function() {
+            $('.shawndrost').remove();
+            $('.sharksforcheap').remove();
+            $('.douglascalhoun').remove();
+          })
+
+          $('.sharksforcheap').on("click", function() {
+            $('.mracus').remove();
+            $('.shawndrost').remove();
+            $('.douglascalhoun').remove();
+          })
+
+          $('.douglascalhoun').on("click", function() {
+            $('.mracus').remove();
+            $('.shawndrost').remove();
+            $('.sharksforcheap').remove();
+          })
           index -= 1;
         }
       })
@@ -122,11 +188,11 @@
         while(index >= streams.home.length - 11){
           var tweet = streams.home[index];
           var tweetTime = streams.home[index].created_at;
-          var $tweet = $('<div class = "tweet"></div>');
-          var $tweetTime = $('<div class = "tweet"></div>');
-          var $tweetButton = $('<button class = "userButton"> </button> ');
+          var $tweet = $('<div class = '+ tweet.user +'></div>');
+          var $tweetTime = $('<div class = '+ tweet.user +'></div>');
+          var $tweetButton = $('<button class =' + tweet.user + '></button>');
 
-          var $rule = $('<hr>');
+          var $rule = $('<hr class='+tweet.user+'>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
           $tweetButton.text('See All Messages From ' + tweet.user);
           $tweetTime.text('Time : '+ tweetTime);
@@ -134,13 +200,47 @@
           $tweetTime.appendTo("#holder");
           $tweetButton.appendTo("#holder");
           $rule.appendTo("#holder");
+          $('.shawndrost').on("click", function() {
+            $('.mracus').remove();
+            $('.sharksforcheap').remove();
+            $('.douglascalhoun').remove();
+          })
+
+          $('.mracus').on("click", function() {
+            $('.shawndrost').remove();
+            $('.sharksforcheap').remove();
+            $('.douglascalhoun').remove();
+          })
+
+          $('.sharksforcheap').on("click", function() {
+            $('.mracus').remove();
+            $('.shawndrost').remove();
+            $('.douglascalhoun').remove();
+          })
+
+          $('.douglascalhoun').on("click", function() {
+            $('.mracus').remove();
+            $('.shawndrost').remove();
+            $('.sharksforcheap').remove();
+          })
           index -= 1;
         }
       })
 
-//       $tweetButton.on("click", function() {
-//         console.log("clicked");
-// });
+
+
+      $("#finito").click(function() {
+        
+        var $body = $('body');
+        $body.html('<img src = http://s.hswstatic.com/gif/science-vs-fiction-world-war-z-nuclear-bomb-130620-670x440.jpg>');
+        
+            $('.shawndrost').remove();
+            $('.mracus').remove();
+            $('.sharksforcheap').remove();
+            $('.douglascalhoun').remove();
+         
+
+      })
 
       console.log('USERS = ', users);
       console.log('STREAMS = ', streams);
